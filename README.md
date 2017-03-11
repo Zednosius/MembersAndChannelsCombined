@@ -1,6 +1,8 @@
 # MembersAndChannelsCombined
 Moves the Discord member list to be positioned underneath the list of channels in a server room instead of being positioned to the right.
+
 Here's an image of it in action.
+
 ![Plugin in action](http://i.imgur.com/0f24TfB.png)
 
 To install simply download the MembersAndChannelsCombined.plugin.js file and put it in %appdata%/BetterDiscord/plugins
