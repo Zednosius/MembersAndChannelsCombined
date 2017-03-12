@@ -15,7 +15,7 @@ function Setting(name, value, type){
 }
 //Defaults
 MembersAndChannelsCombined.settings = {};
-MembersAndChannelsCombined.version = "0.1";
+MembersAndChannelsCombined.version = "0.1.1";
 //Default is for minified mode.
 MembersAndChannelsCombined.settings.left_bar_width = new Setting("Left Bar Width","160px","css");
 MembersAndChannelsCombined.settings.channel_height = new Setting("Channel List Height","50%","css");
@@ -41,6 +41,7 @@ MembersAndChannelsCombined.prototype.moveElements = function (){
 MembersAndChannelsCombined.prototype.applyCSS = function (){
     $(".channels-wrap").css("height",MCC.settings.channel_height.value).css("width","inherit");
     $(".channel-members-wrap").css("height",MCC.settings.members_height.value).css("width","inherit").css("min-width","inherit");
+    $(".channel-members").css("max-width", MCC.settings.left_bar_width.value);
     $("div.account").css("flex-wrap","wrap");
     if($(".LeftSideDiv").length){
         $(".LeftSideDiv").css("width",MCC.settings.left_bar_width.value);
@@ -59,7 +60,9 @@ MembersAndChannelsCombined.prototype.resetElements = function (){
 MembersAndChannelsCombined.prototype.resetCSS = function (){
     $(".channels-wrap").css("height","").css("width","");
     $(".channel-members-wrap").css("height","").css("width","").css("min-width","");
+    $(".channel-members").css("max-width", "240px"); //default
     $("div.account").css("flex-wrap","");
+
 }
 MembersAndChannelsCombined.prototype.onMessage = function () {
     //Supposedly runs when receiving a message
