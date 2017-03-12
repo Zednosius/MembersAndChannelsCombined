@@ -29,11 +29,11 @@ MembersAndChannelsCombined.settings.members_height = new Setting("Member List He
 
 
 MembersAndChannelsCombined.prototype.moveElements = function (){
-    $(".guilds-wrapper").after("<div class='LeftSideDiv flex-vertical' style='width:"+MCC.settings.left_bar_width.value+"'></div>");
-    $(".channels-wrap").appendTo($(".LeftSideDiv"));
+    $(".guilds-wrapper").after("<div class='MCCLeftDiv flex-vertical' style='width:"+MCC.settings.left_bar_width.value+"'></div>");
+    $(".channels-wrap").appendTo($(".MCCLeftDiv"));
     //Share height equally with members and set width to be the same as channel-members-wrap which is 240px
-    $(".channel-members-wrap").appendTo($(".LeftSideDiv"));
-    $("div.account").appendTo($(".LeftSideDiv"));
+    $(".channel-members-wrap").appendTo($(".MCCLeftDiv"));
+    $("div.account").appendTo($(".MCCLeftDiv"));
     MembersAndChannelsCombined.prototype.applyCSS();
 
 };
@@ -43,13 +43,13 @@ MembersAndChannelsCombined.prototype.applyCSS = function (){
     $(".channel-members-wrap").css("height",MCC.settings.members_height.value).css("width","inherit").css("min-width","inherit");
     $(".channel-members").css("max-width", MCC.settings.left_bar_width.value);
     $("div.account").css("flex-wrap","wrap");
-    if($(".LeftSideDiv").length){
-        $(".LeftSideDiv").css("width",MCC.settings.left_bar_width.value);
+    if($(".MCCLeftDiv").length){
+        $(".MCCLeftDiv").css("width",MCC.settings.left_bar_width.value);
     }
 };
 
 MembersAndChannelsCombined.prototype.resetElements = function (){
-            if ( $(".LeftSideDiv").length){
+            if ( $(".MCCLeftDiv").length){
                 $(".channel-members-wrap").appendTo($(".content.flex-spacer.flex-horizontal"));
                 $(".channels-wrap").unwrap();
                 $("div.account").appendTo($(".channels-wrap"));
@@ -75,10 +75,10 @@ MembersAndChannelsCombined.prototype.onSwitch = function () {
 MembersAndChannelsCombined.prototype.start = function () {
     console.log("MembersAndChannelsCombined Start");
     var observer = new MutationObserver(function (mutations, me){
-        if($(".LeftSideDiv").length){
+        if($(".MCCLeftDiv").length){
             me.disconnect();
         }else{
-            if($(".channel-members-wrap").length && $(".LeftSideDiv").length == 0){
+            if($(".channel-members-wrap").length && $(".MCCLeftDiv").length == 0){
                 MembersAndChannelsCombined.prototype.moveElements();
             }
         }
@@ -100,7 +100,7 @@ MembersAndChannelsCombined.prototype.start = function () {
 
         //Reset if going to DMs
         if(e.target.href.includes("channels/@me")){
-            if ( $(".LeftSideDiv").length){ //only reset if we need to
+            if ( $(".MCCLeftDiv").length){ //only reset if we need to
                 MembersAndChannelsCombined.prototype.resetElements();
             }
             return;
